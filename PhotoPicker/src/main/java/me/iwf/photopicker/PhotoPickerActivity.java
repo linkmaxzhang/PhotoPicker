@@ -23,8 +23,6 @@ public class PhotoPickerActivity extends AppCompatActivity {
     private ImagePagerFragment imagePagerFragment;
 
     private int maxCount = DEFAULT_MAX_COUNT;
-
-    private boolean showGif = false;
     private int columnNumber = DEFAULT_COLUMN_NUMBER;
     private ArrayList<String> originalPhotos = null;
 
@@ -35,8 +33,7 @@ public class PhotoPickerActivity extends AppCompatActivity {
 
         boolean showCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, true);
         boolean showGif = getIntent().getBooleanExtra(EXTRA_SHOW_GIF, false);
-        boolean previewEnabled = getIntent().getBooleanExtra(EXTRA_PREVIEW_ENABLED, true);
-        setShowGif(showGif);
+        boolean previewEnabled = getIntent().getBooleanExtra(EXTRA_PREVIEW_ENABLED, false);
 
         maxCount = getIntent().getIntExtra(EXTRA_MAX_COUNT, DEFAULT_MAX_COUNT);
         columnNumber = getIntent().getIntExtra(EXTRA_GRID_COLUMN, DEFAULT_COLUMN_NUMBER);
@@ -87,11 +84,4 @@ public class PhotoPickerActivity extends AppCompatActivity {
         return this;
     }
 
-    public boolean isShowGif() {
-        return showGif;
-    }
-
-    public void setShowGif(boolean showGif) {
-        this.showGif = showGif;
-    }
 }

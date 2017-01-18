@@ -35,7 +35,7 @@ public class PhotoPagerAdapter extends PagerAdapter {
   @Override public Object instantiateItem(ViewGroup container, int position) {
     final Context context = container.getContext();
     View itemView = LayoutInflater.from(context)
-        .inflate(R.layout.__picker_picker_item_pager, container, false);
+        .inflate(R.layout.layout_item_pager, container, false);
 
     final ImageView imageView = (ImageView) itemView.findViewById(R.id.iv_pager);
 

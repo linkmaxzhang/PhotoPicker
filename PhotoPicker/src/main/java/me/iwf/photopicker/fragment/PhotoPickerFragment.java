@@ -103,16 +103,15 @@ public class PhotoPickerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setRetainInstance(true);
 
         mGlideRequestManager = Glide.with(this);
 
         directories = new ArrayList<>();
         originalPhotos = getArguments().getStringArrayList(EXTRA_ORIGIN);
-
         column = getArguments().getInt(EXTRA_COLUMN, DEFAULT_COLUMN_NUMBER);
         boolean showCamera = getArguments().getBoolean(EXTRA_CAMERA, true);
+        boolean showGif = getArguments().getBoolean(EXTRA_SHOW_GIF, false);
         boolean previewEnable = getArguments().getBoolean(EXTRA_PREVIEW_ENABLED, false);
 
         photoGridAdapter = new PhotoGridAdapter(getActivity(), mGlideRequestManager, directories, originalPhotos, column);
@@ -120,8 +119,6 @@ public class PhotoPickerFragment extends Fragment {
         photoGridAdapter.setPreviewEnable(previewEnable);
 
         Bundle mediaStoreArgs = new Bundle();
-
-        boolean showGif = getArguments().getBoolean(EXTRA_GIF);
         mediaStoreArgs.putBoolean(EXTRA_SHOW_GIF, showGif);
         MediaStoreHelper.getPhotoDirs(getActivity(), mediaStoreArgs,
                 new MediaStoreHelper.PhotosResultCallback() {
