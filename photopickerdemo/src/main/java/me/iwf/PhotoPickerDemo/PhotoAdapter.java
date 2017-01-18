@@ -1,16 +1,18 @@
 package me.iwf.PhotoPickerDemo;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
+
 import java.io.File;
 import java.util.ArrayList;
+
 import me.iwf.photopicker.R;
 import me.iwf.photopicker.utils.AndroidLifecycleUtils;
 
@@ -44,7 +46,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
         itemView = inflater.inflate(me.iwf.PhotoPickerDemo.R.layout.item_add, parent, false);
         break;
       case TYPE_PHOTO:
-        itemView = inflater.inflate(R.layout.__picker_item_photo, parent, false);
+        itemView = inflater.inflate(R.layout.layout_picker_item, parent, false);
         break;
     }
     return new PhotoViewHolder(itemView);
@@ -91,7 +93,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     public PhotoViewHolder(View itemView) {
       super(itemView);
       ivPhoto   = (ImageView) itemView.findViewById(R.id.iv_photo);
-      vSelected = itemView.findViewById(R.id.v_selected);
+      //vSelected = itemView.findViewById(R.id.v_selected);
       if (vSelected != null) vSelected.setVisibility(View.GONE);
     }
   }
