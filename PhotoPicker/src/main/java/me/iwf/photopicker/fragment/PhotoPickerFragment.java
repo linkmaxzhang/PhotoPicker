@@ -147,6 +147,12 @@ public class PhotoPickerFragment extends Fragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_photos);
         line = rootView.findViewById(R.id.line);
         layoutUpload = (RelativeLayout) rootView.findViewById(R.id.upload_root);
+        rootView.findViewById(R.id.iv_back).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         initRecyclerView();
         initPhotoDirList();
