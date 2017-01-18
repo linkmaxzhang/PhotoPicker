@@ -19,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -201,7 +202,6 @@ public class PhotoPickerFragment extends Fragment {
             public void onClick(View v) {
                 if (listPopupWindow.isShowing()) {
                     listPopupWindow.dismiss();
-                    ivArrow.setImageResource(R.drawable.ic_album_dir_down);
                 } else if (!getActivity().isFinishing()) {
                     adjustHeight();
                     listPopupWindow.show();
@@ -252,6 +252,13 @@ public class PhotoPickerFragment extends Fragment {
 
                 photoGridAdapter.setCurrentDirectoryIndex(position);
                 photoGridAdapter.notifyDataSetChanged();
+            }
+        });
+
+        listPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                ivArrow.setImageResource(R.drawable.ic_album_dir_down);
             }
         });
     }
