@@ -28,7 +28,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/__picker_name"
+                android:text="@string/picker_name"
                 android:textColor="@color/color_title"
                 android:textSize="18sp" />
 
@@ -48,7 +48,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:clickable="true"
-            android:text="@string/__picker_done"
+            android:text="@string/picker_done"
             android:textColor="@color/color_main"
             android:textSize="17sp"
             android:visibility="gone" />
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="@string/__picker_all_image"
+                android:text="@string/uploading"
                 android:textColor="@color/color_white" />
 
             <ProgressBar

@@ -2,17 +2,12 @@ package me.iwf.photopicker;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import me.iwf.photopicker.entity.Photo;
-import me.iwf.photopicker.event.OnItemCheckListener;
 import me.iwf.photopicker.fragment.ImagePagerFragment;
 import me.iwf.photopicker.fragment.PhotoPickerFragment;
 
-import static android.widget.Toast.LENGTH_LONG;
 import static me.iwf.photopicker.PhotoPicker.DEFAULT_COLUMN_NUMBER;
 import static me.iwf.photopicker.PhotoPicker.DEFAULT_MAX_COUNT;
 import static me.iwf.photopicker.PhotoPicker.EXTRA_GRID_COLUMN;
@@ -57,28 +52,6 @@ public class PhotoPickerActivity extends AppCompatActivity {
                     .commit();
             getSupportFragmentManager().executePendingTransactions();
         }
-
-        pickerFragment.getPhotoGridAdapter().setOnItemCheckListener(new OnItemCheckListener() {
-            @Override
-            public boolean onItemCheck(int position, Photo photo, final int selectedItemCount) {
-
-                if (maxCount <= 1) {
-                    List<String> photos = pickerFragment.getPhotoGridAdapter().getSelectedPhotos();
-                    if (!photos.contains(photo.getPath())) {
-                        photos.clear();
-                        pickerFragment.getPhotoGridAdapter().notifyDataSetChanged();
-                    }
-                    return true;
-                }
-
-                if (selectedItemCount > maxCount) {
-                    Toast.makeText(getActivity(), getString(R.string.__picker_over_max_count_tips, maxCount),
-                            LENGTH_LONG).show();
-                    return false;
-                }
-                return true;
-            }
-        });
 
     }
 

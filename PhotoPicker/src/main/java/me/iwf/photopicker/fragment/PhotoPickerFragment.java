@@ -11,6 +11,7 @@ import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,7 @@ public class PhotoPickerFragment extends Fragment {
     int column;
     //目录弹出框的一次最多显示的目录数目
     public static int COUNT_MAX = 4;
+    private final static int MAX_SELECT_COUNT = 9;
     private final static String EXTRA_CAMERA = "camera";
     private final static String EXTRA_COLUMN = "column";
     private final static String EXTRA_COUNT = "count";
@@ -179,9 +181,10 @@ public class PhotoPickerFragment extends Fragment {
 
         photoGridAdapter.setOnItemCheckListener(new OnItemCheckListener() {
             @Override
-            public boolean onItemCheck(int position, Photo photo, int selectedItemCount) {
-                tvSelected.setText(selectedItemCount + "");
-                if (selectedItemCount > 0) {
+            public boolean onItemCheck(int position, Photo photo, int selectedCount) {
+                int count = selectedCount > MAX_SELECT_COUNT ? MAX_SELECT_COUNT : selectedCount;
+                tvSelected.setText(count + "");
+                if (selectedCount > 0) {
                     tvSelected.setVisibility(View.VISIBLE);
                     tvDone.setVisibility(View.VISIBLE);
                 } else {
@@ -189,7 +192,7 @@ public class PhotoPickerFragment extends Fragment {
                     tvDone.setVisibility(View.GONE);
                 }
 
-                if (getSelectedPhotoPaths().contains(photo.getPath()) || selectedItemCount > 9) {
+                if (selectedCount > MAX_SELECT_COUNT) {
                     return false;
                 }
                 return true;
@@ -223,6 +226,11 @@ public class PhotoPickerFragment extends Fragment {
     private void uploadImages() {
         isUpload = true;
         layoutUpload.setVisibility(View.VISIBLE);
+        int i = 1;
+        for (String path : getSelectedPhotoPaths()) {
+            Log.d("TAG", i + " uploadImages: " + path);
+            i++;
+        }
     }
 
     private void initPhotoDirList() {
@@ -322,10 +330,6 @@ public class PhotoPickerFragment extends Fragment {
                     break;
             }
         }
-    }
-
-    public PhotoGridAdapter getPhotoGridAdapter() {
-        return photoGridAdapter;
     }
 
     @Override
